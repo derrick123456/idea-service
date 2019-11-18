@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.idea.platform.tenant.mapper.CommonTenantMapper">
+
+	<select id="isExist" parameterType="com.idea.platform.tenant.vo.CommonUser"
+		statementType="PREPARED" resultType="java.util.HashMap">
+		SELECT id FROM common_user WHERE
+		code = #{code}
+	</select>
+	
+	<select id="getList" statementType="PREPARED" resultType="java.util.HashMap">
+		SELECT * FROM common_user
+	</select>
+
+</mapper>

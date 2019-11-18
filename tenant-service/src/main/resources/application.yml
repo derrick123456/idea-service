@@ -1,0 +1,63 @@
+spring:
+   application:
+      name: tenant-server
+      
+   datasource:
+       driverClassName: com.mysql.jdbc.Driver
+       type: com.alibaba.druid.pool.DruidDataSource
+   #druid:
+       initialSize: 5
+       maxActive: 10
+       minIdle: 3
+       maxWait: 600000
+       removeAbandoned: true
+       removeAbandonedTimeout: 180
+       timeBetweenEvictionRunsMillis: 600000
+       minEvictableIdleTimeMillis: 300000
+       validationQuery: SELECT 1 FROM DUAL
+       testWhileIdle: true
+       testOnBorrow: false
+       testOnReturn: false
+       poolPreparedStatements: true
+       maxPoolPreparedStatementPerConnectionSize: 50
+       filters: stat
+      
+   jackson:
+      default-property-inclusion: non_null
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8
+   profiles:
+      active: dev
+           
+      
+mybatis:
+   configuration:
+      map-underscore-to-camel-case: true
+   mapper-locations: classpath*:com/idea/platform/tenant/mapper/mapping/*.xml
+   
+   
+#token_key
+securityKey: 163edeedc5a570ed4d799674671b1e91
+#token有效时间min
+expiretime: 60
+ 
+#接口返回模块编码
+module-code: T008
+  
+tenantserver-url:
+   config:
+      #无需authorization授权接口,path,支持通配符,和过滤器配置一致
+      #url有/v1/tenant/都要进行登录拦截
+      unauthorization-url: 
+         - /**/v1/tenant/**
+      unRespone-url: 
+         #- /**/swagger**/**
+         - /**/console**/**
+         - /**/api-docs
+         - /**/**.html
+         - /**/**.js
+         - /**/**.css
+         - /**/**.png
+         - /**/**.ico
+         - /**/export/**
+ 
